@@ -2,7 +2,7 @@
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
 var keys = require("./key.js");
-
+``
 // Axios requirement
 var axios = require("axios");
 
@@ -58,10 +58,21 @@ function concert() {
         .then(function (response) {
             // If the axios was successful...
             // Then log the body from the site!
-            console.log(response.data);
+            // console.log(response.data);
             console.log("Name of venue: " + response.data[0].venue.name);
             console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
             console.log("Date of the Event: " + response.data[0].datetime);
+        })
+        .catch(function (err){
+            axios.get("https://rest.bandsintown.com/artists/celine+dion/events?app_id=codingbootcamp")
+            .then(function (response) {
+                // If the axios was successful...
+                // Then log the body from the site!
+                // console.log(response.data);
+                console.log("Name of venue: " + response.data[0].venue.name);
+                console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+                console.log("Date of the Event: " + response.data[0].datetime);
+            })
         })
 }
 
