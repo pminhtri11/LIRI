@@ -63,16 +63,17 @@ function concert() {
             console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
             console.log("Date of the Event: " + response.data[0].datetime);
         })
-        .catch(function (err){
+        .catch(function (err) {
             axios.get("https://rest.bandsintown.com/artists/celine+dion/events?app_id=codingbootcamp")
-            .then(function (response) {
-                // If the axios was successful...
-                // Then log the body from the site!
-                // console.log(response.data);
-                console.log("Name of venue: " + response.data[0].venue.name);
-                console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
-                console.log("Date of the Event: " + response.data[0].datetime);
-            })
+                .then(function (response) {
+                    // If the axios was successful...
+                    // Then log the body from the site!
+                    // console.log(response.data);
+                    console.log("Unable to find artist. Here is a concert for Celine Dion")
+                    console.log("Name of venue: " + response.data[0].venue.name);
+                    console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+                    console.log("Date of the Event: " + response.data[0].datetime);
+                })
         })
 }
 
@@ -90,24 +91,23 @@ function movie() {
                 console.log("Plot: " + response.data.Plot);
                 console.log("Actors: " + response.data.Actors);
             }
-        })
-        .error
-    {
-        axios.get("http://www.omdbapi.com/?t=Mr.+Nobody&y=&plot=short&apikey=trilogy").then(
-            function (response) {
-                // console.log(response.data);
-                console.log("Title: " + response.data.Title);
-                console.log("Year Released: " + response.data.Year);
-                console.log("IMDB Rating: " + response.data.imdbRating);
-                console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
-                console.log("Country: " + response.data.Country);
-                console.log("Language: " + response.data.Language);
-                console.log("Plot: " + response.data.Plot);
-                console.log("Actors: " + response.data.Actors);
-            })
-    }
+            else {
+                axios.get("http://www.omdbapi.com/?t=Mr.+Nobody&y=&plot=short&apikey=trilogy").then(
+                    function (response) {
+                        // console.log(response.data);
+                        console.log("Title: " + response.data.Title);
+                        console.log("Year Released: " + response.data.Year);
+                        console.log("IMDB Rating: " + response.data.imdbRating);
+                        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+                        console.log("Country: " + response.data.Country);
+                        console.log("Language: " + response.data.Language);
+                        console.log("Plot: " + response.data.Plot);
+                        console.log("Actors: " + response.data.Actors);
+                    })
+            }
+        }
+    )
 }
-
 function doIt() {
     fs.readFile("random.txt", "utf8", function (error, data) {
 
@@ -115,7 +115,7 @@ function doIt() {
         if (error) {
             return console.log("Unable to read Data");
         }
-        var dataArr = data.split(",");        
+        var dataArr = data.split(",");
         command = dataArr[0];
         inputValue = dataArr[1];
 
